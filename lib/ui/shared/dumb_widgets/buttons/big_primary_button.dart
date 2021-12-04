@@ -1,0 +1,83 @@
+import 'package:e_commerce/utils/constants/app_constants.dart';
+import 'package:e_commerce/utils/constants/colors.dart';
+import 'package:e_commerce/utils/constants/text_styles.dart';
+import 'package:e_commerce/utils/constants/ui_helpers.dart';
+import 'package:flutter/material.dart';
+
+class PrimaryButton extends StatelessWidget {
+  final Function() onPressed;
+  final String label;
+  final Color? labelColor;
+  final bool outlined;
+  final double? height;
+  final double? width;
+  final bool? edit;
+  final bool active;
+  const PrimaryButton({
+    Key? key,
+    required this.onPressed,
+    this.labelColor,
+    required this.label,
+    required this.outlined,
+    required this.active,
+    this.height,
+    this.width,
+    this.edit,
+  }) : super(key: key);
+
+  @override
+  Widget build(BuildContext context) {
+    return RawMaterialButton(
+      onPressed: () {},
+      //elevation: 12,
+      focusElevation: 0,
+      hoverElevation: 0,
+      highlightElevation: 0,
+      disabledElevation: 0,
+      fillColor: outlined ? null : AppColors.saleColor,
+      splashColor: null,
+      // splashColor: outlined
+      //     ? AppColors.saleColor.withOpacity(1)
+      //     : AppColors.saleColor.withOpacity(0.9),
+      highlightColor: outlined
+          ? AppColors.whiteColor.withOpacity(0.5)
+          : AppColors.saleColor.withOpacity(0.9),
+      constraints: BoxConstraints.tightFor(
+        height: height ?? 48,
+        width: width ?? MediaQuery.of(context).size.width.clamp(240.0, 560.0),
+      ),
+      shape: RoundedRectangleBorder(
+        side: BorderSide(
+            color: AppColors.blackColor,
+            width: 1.5,
+            style: outlined ? BorderStyle.solid : BorderStyle.none),
+        borderRadius: UIHelper.bigBorderRadius,
+      ),
+      padding: const EdgeInsets.symmetric(
+        vertical: 8,
+        horizontal: 16,
+      ),
+      child: FittedBox(
+          child: Row(
+        children: [
+          Visibility(
+            visible: edit != null,
+            child: const Padding(
+              padding: EdgeInsets.only(right: 8.0),
+              child: Icon(
+                editIcon,
+                color: AppColors.whiteColor,
+              ),
+            ),
+          ),
+          Text(
+            width != null ? label : label.toUpperCase(),
+            style: !outlined
+                ? AppTextStyle.descrItemTextWhite
+                : AppTextStyle.descrItemText,
+          ),
+        ],
+      )),
+    );
+  }
+}
