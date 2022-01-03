@@ -6,14 +6,18 @@ import 'package:flutter/material.dart';
 class CustomSquareTag extends StatelessWidget {
   final String tagText;
   final bool outlined;
+  final double width;
   const CustomSquareTag(
-      {Key? key, required this.tagText, required this.outlined})
+      {Key? key,
+      required this.tagText,
+      required this.outlined,
+      this.width = 100})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 100,
+      width: width,
       height: 40,
       decoration: BoxDecoration(
         borderRadius: UIHelper.smallBorderRadius,

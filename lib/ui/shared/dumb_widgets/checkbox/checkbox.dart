@@ -18,13 +18,21 @@ class CustomCheckbox extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisSize: MainAxisSize.min,
       children: [
-        Checkbox(
-          activeColor: activeColor,
-          value: value,
-          shape: RoundedRectangleBorder(
-              borderRadius: UIHelper.extraSmallBorderRadius),
-          onChanged: onChanged,
+        SizedBox(
+          width: 24,
+          height: 24,
+          child: Checkbox(
+            activeColor: activeColor,
+            value: value,
+            shape: RoundedRectangleBorder(
+                borderRadius: UIHelper.extraSmallBorderRadius),
+            onChanged: onChanged,
+          ),
+        ),
+        UIHelper.customHorizontalSpace(
+          label != null ? 12 : 0,
         ),
         Visibility(
           visible: label != null ? true : false,

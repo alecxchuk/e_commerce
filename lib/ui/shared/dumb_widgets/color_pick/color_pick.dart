@@ -5,13 +5,21 @@ import 'package:flutter/material.dart';
 class ColorPicker extends StatelessWidget {
   final Color color;
   final bool selected;
-  const ColorPicker({Key? key, required this.color, required this.selected})
+  final double width;
+  final double height;
+  const ColorPicker(
+      {Key? key,
+      required this.color,
+      required this.selected,
+      this.height = 36,
+      this.width = 36})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return SizedBox(
       height: 44,
+      width: 44,
       child: Stack(
         children: [
           Positioned(

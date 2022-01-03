@@ -10,12 +10,14 @@ class RoundButton extends StatelessWidget {
   final Color fillColor;
   final Color? iconColor;
   final String iconName;
+  final double? iconSize;
   final VoidCallback onPressed;
   const RoundButton(
       {Key? key,
       required this.onPressed,
       required this.fillColor,
       required this.iconName,
+      this.iconSize = 16,
       this.height,
       this.width,
       this.elevation,
@@ -51,10 +53,10 @@ class RoundButton extends StatelessWidget {
         return Icon(cameraIcon, color: iconColor);
       case favorite:
         return Icon(
-            iconColor == AppColors.appGrey
-                ? favoriteOutlinedIcon
-                : favoriteIcon,
-            color: iconColor);
+          iconColor == AppColors.appGrey ? favoriteOutlinedIcon : favoriteIcon,
+          color: iconColor,
+          size: iconSize,
+        );
       case plusButton:
         return Icon(
           addIcon,

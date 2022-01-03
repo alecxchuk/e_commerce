@@ -9,13 +9,16 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 
 class CategoryCard extends StatelessWidget {
-  const CategoryCard({Key? key}) : super(key: key);
+  final String label;
+  final String iconPath;
+  const CategoryCard({Key? key, required this.label, required this.iconPath})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 104,
-      width: MediaQuery.of(context).size.width,
+      height: 100,
+      width: screenWidth(context),
       decoration: BoxDecoration(
         borderRadius: UIHelper.smallBorderRadius,
         boxShadow: [
@@ -27,21 +30,22 @@ class CategoryCard extends StatelessWidget {
         color: AppColors.whiteColor,
       ),
       child: Row(
+        mainAxisSize: MainAxisSize.max,
         children: [
           SizedBox(
-            width: 104,
+            width: screenWidthPercentage(context, percentage: 0.5) - 16,
             child: Padding(
               padding: const EdgeInsets.only(left: 24.0),
               child: Text(
-                'New',
+                label,
                 style: AppTextStyle.headline3,
               ),
             ),
           ),
           SizedBox(
-            width: MediaQuery.of(context).size.width - 120,
+            width: screenWidthPercentage(context, percentage: 0.5) - 16,
             child: Image.asset(
-              jeanGirl,
+              iconPath,
               fit: BoxFit.fill,
             ),
           )

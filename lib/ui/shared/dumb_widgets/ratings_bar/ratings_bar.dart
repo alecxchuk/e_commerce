@@ -6,20 +6,25 @@ import 'package:flutter_rating_bar/flutter_rating_bar.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class RatingsBar extends StatelessWidget {
-  final int numberOfRatings;
+  final int? numberOfRatings;
   final double itemCount;
   final double? itemSize;
+  final double itemPadding;
   const RatingsBar(
       {Key? key,
-      required this.numberOfRatings,
+      this.numberOfRatings,
       required this.itemCount,
-      this.itemSize})
+      this.itemSize,
+      this.itemPadding = 4})
       : super(key: key);
 
   @override
   Widget build(BuildContext context) {
     return Row(
       crossAxisAlignment: CrossAxisAlignment.center,
+      mainAxisAlignment: numberOfRatings != null
+          ? MainAxisAlignment.start
+          : MainAxisAlignment.center,
       children: [
         RatingBar(
           initialRating: itemCount,
@@ -28,7 +33,7 @@ class RatingsBar extends StatelessWidget {
           allowHalfRating: true,
           itemCount: 5,
           itemSize: itemSize ?? 14,
-          //itemPadding: UIHelper.symmetricSmallpadding,
+          itemPadding: EdgeInsets.only(right: itemPadding),
           // itemBuilder: (context, _) => SvgPicture.asset(starIcon),
           onRatingUpdate: (rating) {
             print(rating);
@@ -39,10 +44,13 @@ class RatingsBar extends StatelessWidget {
             half: SvgPicture.asset(starIcon),
           ),
         ),
-        UIHelper.horizontalSpaceExtraSmall,
-        Text(
-          '($numberOfRatings)',
-          style: AppTextStyle.helperText10, //.copyWith(color: Colors.white),
+        UIHelper.customHorizontalSpace(numberOfRatings != null ? 4 : 0),
+        Visibility(
+          visible: numberOfRatings != null,
+          child: Text(
+            '($numberOfRatings )',
+            style: AppTextStyle.helperText10, //.copyWith(color: Colors.white),
+          ),
         )
       ],
     );

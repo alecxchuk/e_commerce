@@ -13,6 +13,7 @@ import 'catalog_listitem_vm.dart';
 
 class CatalogueProductModuleCard extends StatelessWidget {
   final double? width;
+  final String imageAssetName;
   final String itemName;
   final String brandName;
   final String itemSize;
@@ -25,6 +26,7 @@ class CatalogueProductModuleCard extends StatelessWidget {
   const CatalogueProductModuleCard(
       {Key? key,
       required this.itemName,
+      required this.imageAssetName,
       required this.brandName,
       required this.itemSize,
       required this.itemPrice,
@@ -45,14 +47,14 @@ class CatalogueProductModuleCard extends StatelessWidget {
               width: width ?? 164, //MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: UIHelper.smallBorderRadius,
-                boxShadow: [
-                  BoxShadow(
-                      color: AppColors.realBlack.withOpacity(0.08),
-                      offset: const Offset(0, 1),
-                      blurRadius: 25)
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: AppColors.realBlack.withOpacity(0.08),
+                //       offset: const Offset(0, 1),
+                //       blurRadius: 25)
+                // ],
                 color: itemAvailable
-                    ? AppColors.whiteColor
+                    ? AppColors.backgroundColor
                     : AppColors.whiteColor.withOpacity(0.5),
               ),
               child: Column(
@@ -60,10 +62,10 @@ class CatalogueProductModuleCard extends StatelessWidget {
                 children: [
                   Stack(clipBehavior: Clip.none, children: [
                     SizedBox(
-                      width: 164,
+                      width: width != null ? width! / 2 : 164,
                       height: 184,
                       child: Image.asset(
-                        coolGuy,
+                        imageAssetName,
                         fit: BoxFit.fill,
                       ),
                     ),
@@ -73,19 +75,22 @@ class CatalogueProductModuleCard extends StatelessWidget {
                       child: Visibility(
                         visible: label != null,
                         child: CustomRoundedLabel(
-                            tagText:
-                                label == newText ? newText : '-$salesValue%',
-                            color: label == newText
+                            tagText: label == newText.toUpperCase()
+                                ? newText.toUpperCase()
+                                : '-$salesValue%',
+                            color: label == newText.toUpperCase()
                                 ? AppColors.realBlack
                                 : AppColors.saleColor),
                       ),
                     ),
                     Positioned(
-                        bottom: -24,
+                        bottom: -20,
                         right: 0,
                         child: Visibility(
                           visible: itemAvailable,
                           child: Container(
+                            width: 36,
+                            height: 36,
                             decoration: BoxDecoration(
                               boxShadow: [
                                 BoxShadow(
@@ -149,11 +154,11 @@ class CatalogueProductModuleCard extends StatelessWidget {
                           UIHelper.verticalSpaceSmall,
                           Flexible(
                             //fit: FlexFit.tight,
-                            child: Text(itemName.toUpperCase(),
+                            child: Text(brandName.toUpperCase(),
                                 style: AppTextStyle.helperText),
                           ),
                           //UIHelper.verticalSpaceExtraSmall,
-                          Text(brandName, style: AppTextStyle.subHeadText),
+                          Text(itemName, style: AppTextStyle.subHeadText),
                           UIHelper.verticalSpaceSmall,
 
                           Flexible(
@@ -162,14 +167,14 @@ class CatalogueProductModuleCard extends StatelessWidget {
                               children: <TextSpan>[
                                 TextSpan(
                                     text: '$itemPrice\$ ',
-                                    style: label == sales
+                                    style: label == sale.toUpperCase()
                                         ? AppTextStyle.helperText14_500
                                             .copyWith(
                                                 decoration:
                                                     TextDecoration.lineThrough)
                                         : AppTextStyle.descrItemText),
                                 TextSpan(
-                                    text: label == sales
+                                    text: label == sale.toUpperCase()
                                         ? '${itemPrice * 0.7}\$'
                                         : '',
                                     style: AppTextStyle.saleText14_500),

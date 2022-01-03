@@ -1,5 +1,4 @@
-import 'package:e_commerce/ui/shared/bottom_sheets/select_size_bs_vm.dart';
-import 'package:e_commerce/ui/shared/dumb_widgets/buttons/big_primary_button.dart';
+import 'package:e_commerce/ui/shared/bottom_sheets/sort_by_bs/sort_by_bs_vm.dart';
 import 'package:e_commerce/utils/constants/app_constants.dart';
 import 'package:e_commerce/utils/constants/app_strings.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
@@ -9,28 +8,27 @@ import 'package:flutter/material.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-class SelectSizeBottomSheet extends StatelessWidget {
+class SortByBottomSheet extends StatelessWidget {
   final padding = const EdgeInsets.only(left: 16.0, right: 16);
   final borderThickness = 0.4;
-
+  final bool selected;
   final SheetRequest request;
   final Function(SheetResponse) completer;
-  const SelectSizeBottomSheet({
-    Key? key,
-    required this.request,
-    required this.completer,
-  }) : super(key: key);
+  const SortByBottomSheet(
+      {Key? key,
+      required this.request,
+      required this.completer,
+      this.selected = false})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    final spacing = (MediaQuery.of(context).size.width - 332) / 2;
-    return ViewModelBuilder<SelectSizeViewModel>.reactive(
+    return ViewModelBuilder<SortByBottomSheetVm>.reactive(
       builder: (context, model, child) => Container(
           decoration: const BoxDecoration(
               color: AppColors.backgroundColor,
               borderRadius: BorderRadius.only(
                   topLeft: Radius.circular(34), topRight: Radius.circular(34))),
-          //height: 400,
           child: Column(
               mainAxisSize: MainAxisSize.min,
               crossAxisAlignment: CrossAxisAlignment.start,
@@ -51,50 +49,35 @@ class SelectSizeBottomSheet extends StatelessWidget {
                 UIHelper.verticalSpaceMedium,
                 Align(
                     alignment: Alignment.center,
-                    child: Text(selectPrice, style: AppTextStyle.headline3)),
+                    child: Text(sortBy, style: AppTextStyle.headline3)),
                 UIHelper.customVerticalSpace(22),
-                Padding(
-                  padding: padding,
-                  child: Wrap(
-                    runSpacing: 24.0,
-                    children: [
-                      sizeBox(extraSmall),
-                      UIHelper.customHorizontalSpace(spacing),
-                      sizeBox(small),
-                      UIHelper.customHorizontalSpace(spacing),
-                      sizeBox(medium),
-                      sizeBox(large),
-                      UIHelper.customHorizontalSpace(spacing),
-                      sizeBox(extraLarge),
-                    ],
+                Container(
+                  color: Colors.transparent,
+                  child: ListView.builder(
+                    shrinkWrap: true,
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () => model.setIndex(index),
+                        child: Container(
+                          color: index == model.currentIndex
+                              ? AppColors.saleColor
+                              : AppColors.backgroundColor,
+                          child: ListTile(
+                            // tileColor: AppColors.backgroundColor,
+                            // selectedTileColor: AppColors.saleColor,
+                            // selected: index == 2 ? true : false,
+                            title: Text(
+                              sortList[index],
+                              style: index == model.currentIndex
+                                  ? AppTextStyle.subHeadTextWhite
+                                  : AppTextStyle.normalText16Black,
+                            ),
+                          ),
+                        ),
+                      );
+                    },
+                    itemCount: sortList.length,
                   ),
-                ),
-                UIHelper.customVerticalSpace(24),
-                Divider(color: AppColors.appGrey, thickness: borderThickness),
-                UIHelper.verticalSpaceMedium,
-                Padding(
-                  padding: padding,
-                  child: Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                    children: [
-                      Text(sizeInfo, style: AppTextStyle.subHeadText),
-                      const Icon(
-                        forwardIcon,
-                        size: 16,
-                      )
-                    ],
-                  ),
-                ),
-                UIHelper.verticalSpaceMedium,
-                Divider(color: AppColors.appGrey, thickness: borderThickness),
-                UIHelper.customVerticalSpace(28),
-                Padding(
-                  padding: padding,
-                  child: PrimaryButton(
-                      onPressed: () {},
-                      label: addToFavorites,
-                      outlined: false,
-                      active: true),
                 ),
                 UIHelper.customVerticalSpace(30),
                 Align(
@@ -111,7 +94,7 @@ class SelectSizeBottomSheet extends StatelessWidget {
                 ),
                 UIHelper.customVerticalSpace(9),
               ])),
-      viewModelBuilder: () => SelectSizeViewModel(),
+      viewModelBuilder: () => SortByBottomSheetVm(),
     );
   }
 

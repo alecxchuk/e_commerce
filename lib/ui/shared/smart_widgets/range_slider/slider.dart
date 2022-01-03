@@ -12,6 +12,7 @@ class PriceRangeSlider extends StatelessWidget {
   Widget build(BuildContext context) {
     return ViewModelBuilder<PriceRangeViewModel>.reactive(
         builder: (context, model, child) => Column(
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 Row(
                   children: [
@@ -28,6 +29,7 @@ class PriceRangeSlider extends StatelessWidget {
                 UIHelper.verticalSpaceExtraSmall,
                 SliderTheme(
                   data: SliderThemeData(
+                      trackHeight: 3,
                       overlayShape: SliderComponentShape.noOverlay,
                       showValueIndicator: ShowValueIndicator.never),
                   child: RangeSlider(

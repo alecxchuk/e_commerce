@@ -5,7 +5,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 
 class BottomNav extends StatelessWidget {
-  const BottomNav({Key? key}) : super(key: key);
+  final int currentIndex;
+  final Function(int) setIndex;
+  const BottomNav(
+      {Key? key, required this.currentIndex, required this.setIndex})
+      : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -16,16 +20,16 @@ class BottomNav extends StatelessWidget {
       unselectedItemColor: AppColors.appGrey,
       selectedFontSize: 14,
       unselectedFontSize: 14,
-      selectedLabelStyle: AppTextStyle.saleText10,
-      //unselectedLabelStyle: AppTextStyle.darkGreySize12,
-      //currentIndex: vModel.currentIndex,
-      //onTap: vModel.setIndex,
+      selectedLabelStyle: AppTextStyle.saleText12_600,
+      unselectedLabelStyle: AppTextStyle.baseStyle(
+          color: AppColors.appGrey, fontSize: 12, fontWeight: FontWeight.w400),
+      currentIndex: currentIndex,
+      onTap: setIndex,
       items: getBottomIcons(context),
     );
   }
 
   List<BottomNavigationBarItem> getBottomIcons(context) {
-    List<String> name = ['home', 'shop', 'bag', 'fav', 'Profile'];
     List<String> icons = [
       homeIcon,
       shoppingCart,
@@ -43,7 +47,7 @@ class BottomNav extends StatelessWidget {
 
     List<BottomNavigationBarItem> bottomNavList = List.generate(5, (i) {
       var item = BottomNavigationBarItem(
-        label: name[i],
+        label: bottomNavBarList[i],
         icon: SvgPicture.asset(
           icons[i],
         ),
@@ -57,22 +61,5 @@ class BottomNav extends StatelessWidget {
     });
 
     return bottomNavList;
-  }
-
-  ///Get all the pages and match them to the bottom nav icon
-  ///that is clicked this would change the view to the current
-  /*Widget*/ getViewForIndex(int index) {
-    switch (index) {
-      case 0:
-      //return const HomePage();
-      case 1:
-      //return const PluginPage();
-      case 2:
-      //return const DmPage();
-      case 3:
-      //return const YouPage();
-      default:
-      //return const HomePage();
-    }
   }
 }

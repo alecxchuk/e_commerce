@@ -5,16 +5,16 @@ import 'package:e_commerce/utils/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 class CustomDropdown extends StatelessWidget {
-  const CustomDropdown({
-    Key? key,
-  }) : super(
+  final double height;
+  const CustomDropdown({Key? key, this.height = 48})
+      : super(
           key: key,
         );
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 48,
+      height: height,
       decoration: BoxDecoration(
           border: Border.all(color: AppColors.appGrey),
           borderRadius: UIHelper.smallBorderRadius),

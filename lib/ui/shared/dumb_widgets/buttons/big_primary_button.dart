@@ -5,9 +5,10 @@ import 'package:e_commerce/utils/constants/ui_helpers.dart';
 import 'package:flutter/material.dart';
 
 class PrimaryButton extends StatelessWidget {
-  final Function() onPressed;
+  final VoidCallback onPressed;
   final String label;
   final Color? labelColor;
+  final Color backgroundColor;
   final bool outlined;
   final double? height;
   final double? width;
@@ -20,6 +21,7 @@ class PrimaryButton extends StatelessWidget {
     required this.label,
     required this.outlined,
     required this.active,
+    this.backgroundColor = AppColors.saleColor,
     this.height,
     this.width,
     this.edit,
@@ -28,13 +30,13 @@ class PrimaryButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-      onPressed: () {},
+      onPressed: () => onPressed(),
       //elevation: 12,
       focusElevation: 0,
       hoverElevation: 0,
       highlightElevation: 0,
       disabledElevation: 0,
-      fillColor: outlined ? null : AppColors.saleColor,
+      fillColor: outlined ? null : backgroundColor,
       splashColor: null,
       // splashColor: outlined
       //     ? AppColors.saleColor.withOpacity(1)

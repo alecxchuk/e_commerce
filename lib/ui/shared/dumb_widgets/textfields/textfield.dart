@@ -3,25 +3,41 @@ import 'package:e_commerce/utils/constants/text_styles.dart';
 import 'package:flutter/material.dart';
 
 class CustomTextField extends StatelessWidget {
-  final String label;
+  final TextEditingController? controller;
+  final TextInputAction? textInputAction;
+  final TextInputType? keyboardType;
+  final String? label;
+  final String? hintText;
   final Widget? suffixIcon;
   final bool? error;
+  final String? errorMessage;
   final bool obscureText;
-  const CustomTextField({
-    Key? key,
-    required this.label,
-    required this.obscureText,
-    this.suffixIcon,
-    this.error,
-  }) : super(key: key);
-  final double contentPadding = 10.0;
+  final dynamic onChanged;
+  final double height;
+  final int? maxLines;
+  const CustomTextField(
+      {Key? key,
+      this.label,
+      required this.obscureText,
+      required this.onChanged,
+      this.hintText,
+      this.suffixIcon,
+      this.error,
+      this.errorMessage,
+      this.controller,
+      this.textInputAction,
+      this.height = 64,
+      this.maxLines,
+      this.keyboardType})
+      : super(key: key);
+  final double contentPadding = 20.0;
   final double borderRadius = 4.0;
-  final double textfieldHeight = 64.0;
+  // final  double textfieldHeight = 64.0;
 
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: textfieldHeight,
+      height: height,
       decoration: BoxDecoration(
         borderRadius: BorderRadius.all(
           Radius.circular(borderRadius),
@@ -36,13 +52,24 @@ class CustomTextField extends StatelessWidget {
       ),
       child: Center(
         child: TextField(
-            style: AppTextStyle.textFieldInput,
+            textInputAction: textInputAction,
+            keyboardType: keyboardType,
+            controller: controller!,
+            onChanged: (x) => onChanged(x),
+            // validator: validate,
+            style: maxLines == null
+                ? AppTextStyle.textFieldInput
+                : AppTextStyle.normalText14Black.copyWith(height: 1.5),
             obscureText: obscureText,
+            maxLines: maxLines ?? 1,
             decoration: InputDecoration(
                 labelText: label,
+                hintText: hintText,
+                hintStyle: AppTextStyle.helperText14,
                 labelStyle: AppTextStyle.helperText14,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: contentPadding),
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: contentPadding,
+                    vertical: maxLines != null ? 12 : 0),
                 suffixIcon: suffixIcon,
                 border: InputBorder.none,
                 errorBorder: const OutlineInputBorder(
