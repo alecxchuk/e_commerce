@@ -57,12 +57,30 @@ class UIHelper {
   static BorderRadius largeCircularBorderRadius =
       const BorderRadius.all(Radius.elliptical(36, 36));
 
+  static BorderRadius customCircularBorder(double value) =>
+      BorderRadius.all(Radius.circular(value));
+
   // Edge Insets
   static EdgeInsets smallPadding = const EdgeInsets.all(_eight);
 
   static EdgeInsets symmetricSmallpadding =
       const EdgeInsets.symmetric(horizontal: 4.0);
+
+  static EdgeInsets customSymmetricPadding(
+          {double? horizontal, double? vertical}) =>
+      EdgeInsets.symmetric(
+          horizontal: horizontal ?? 0, vertical: vertical ?? 0);
+  static EdgeInsets customPadding(value) => EdgeInsets.all(value);
 }
+
+// Screen Size helpers
+double screenWidth(BuildContext context) => MediaQuery.of(context).size.width;
+double screenHeight(BuildContext context) => MediaQuery.of(context).size.height;
+
+double screenHeightPercentage(BuildContext context, {double percentage = 1}) =>
+    screenHeight(context) * percentage;
+double screenWidthPercentage(BuildContext context, {double percentage = 1}) =>
+    screenWidth(context) * percentage;
 
 
 

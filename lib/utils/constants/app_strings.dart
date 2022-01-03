@@ -4,7 +4,7 @@ const String appName = 'Zuri Chat';
 const String zuri = 'ZURI';
 
 // Filter Menu
-const String filter = 'Filter';
+const String filters = 'Filters';
 const String price = 'Price';
 
 // select price bottom sheet
@@ -17,12 +17,108 @@ const String extraLarge = 'XL';
 const String sizeInfo = 'Size Info';
 const String addToFavorites = 'ADD TO FAVORITES';
 
+// sort by bottom sheet
+const String sortBy = 'Sort by';
+const String popular = 'Popular';
+const String newest = 'Newest';
+const String customerReview = 'Customer review';
+const String lowestToHigh = 'lowest to High';
+const String highestToLow = 'highest to Low';
+
+// review bottom sheet
+const String whatsYourRate = 'What\'s your rate?';
+const String addYourPhotos = 'Add your photos';
+const String yourReview = 'Your review';
+const String sendReview = 'Send review';
+const String pleaseShareOpinion = 'Please share your opinion about the product';
+
 const String colorText = 'Color';
 const String sizeText = 'Size';
 const String unitText = 'Unit';
 const String soldOutText = 'Sorry, this item is currently sold out';
 const String newText = 'New';
 const String sales = 'Sales';
+const String sale = 'Sale';
+const String superSummerSale = 'Super summer sale';
+const String streetClothes = 'Street clothes';
+
+const String useShipping = 'Use as shipping address';
+const String editText = 'Edit';
+const String addToFavorite = 'Add to favorites';
+const String deleteFromFavorite = 'Delete from the list';
+const String orderText = 'Order';
+const String trackingNumber = 'Tracking number';
+const String quantityText = 'Quantity';
+const String totalAmount = 'Total amount';
+const String detailsText = 'Details';
+const String deliveredText = 'Delivered';
+
+const dollarSign = '\$';
+
+const loginText = 'Login';
+const signupText = 'Sign up';
+const sendText = 'Send';
+const forgotPasswordText = 'Forgot password';
+const nameText = 'Name';
+const emailText = 'Email';
+const passwordText = 'Password';
+const forgotYourPasswordText = 'Forgot your Password';
+const loginSocialAccount = 'Or Login with social account';
+const alreadyHaveAccount = 'Already have an account';
+const enterYourEmailAddress =
+    'Please, enter your email address. You will receive a link to create a new password via email.';
+
+const viewAll = 'View All';
+const neverSeenBefore = 'You\'ve never seen it before';
+
+const checkText = 'Check';
+const fashionSale = 'Fashion sale';
+
+const womenText = 'Women';
+const menText = 'Men';
+const kidsText = 'Kids';
+const clothes = 'Clothes';
+const shoes = 'Shoes';
+const accessories = 'Accessories';
+const categories = 'Categories';
+
+const categoriesList = [
+  'Tops',
+  'Shirts & Blouses',
+  'Cardigans & Sweaters',
+  'Knitwear',
+  'Blazers',
+  'Outerwear',
+  'Pants',
+  'Jeans',
+  'Shorts',
+  'Skirts',
+  'Dresses'
+];
+
+const catalogTags = [
+  'T-shirts',
+  'Crop tops',
+  'Sleeveless',
+  'Blouses',
+  'Coporate',
+];
+
+const String discard = 'Discard';
+const String apply = 'Apply';
+const String priceRange = 'Price range';
+const String category = 'Category';
+const String brand = 'Brand';
+const String colors = 'Colors';
+const String sizes = 'Sizes';
+const String all = 'All';
+const String women = 'Women';
+const String men = 'Men';
+const String boys = 'Boys';
+const String girls = 'Girls';
+
+const String youCanLikeThis = 'You can alse like this';
+
 //Snackbar
 const String noInternet = 'No internet connection, connect and try again.';
 const String fillAllFields = 'Please fill all fields.';
@@ -159,7 +255,6 @@ const String Ok = 'Ok';
 const String SelectLang = 'Select Language';
 const String DarkMode = 'Dark mode';
 const String Set = 'Set';
-const String Apply = 'Apply';
 const String ComposeFeedback = 'Compose feedback';
 const String FeedbackHint = 'e.g I found a bug in the Dm’s';
 const String FeedbackHelperText =

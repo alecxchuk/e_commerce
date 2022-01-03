@@ -1,13 +1,19 @@
 import 'package:e_commerce/ui/shared/bottom_sheets/setup_bottom_sheet_ui.dart';
+import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
+import 'ui/shared/dialogs/setup_dialog_ui.dart';
 
 void main() {
+  SystemChrome.setSystemUIOverlayStyle(
+      const SystemUiOverlayStyle(statusBarColor: Colors.transparent));
   setupLocator();
   setupBottomSheetUi();
+  setupDialogUi();
   runApp(const MyApp());
 }
 
@@ -19,8 +25,17 @@ class MyApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Flutter Demo',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
-          primarySwatch: Colors.blue, fontFamily: 'Metropolis-Regular'),
+          primarySwatch: Colors.blue,
+          fontFamily: 'Metropolis',
+          // highlightColor: AppColors.realBlack,
+          scrollbarTheme: ScrollbarThemeData(
+              isAlwaysShown: true,
+              // thickness: MaterialStateProperty.all(10),
+              thumbColor: MaterialStateProperty.all(AppColors.blackColor),
+              radius: const Radius.circular(10),
+              minThumbLength: 0)),
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
     );
