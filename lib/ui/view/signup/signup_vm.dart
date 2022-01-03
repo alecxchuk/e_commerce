@@ -3,36 +3,23 @@ import 'package:e_commerce/app/app.router.dart';
 import 'package:e_commerce/utils/mixins/validators_mixin.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
-import 'login_view.form.dart';
+import 'signup_view.form.dart';
 
-class LoginVm extends FormViewModel with ValidatorMixin {
+class SignupViewModel extends FormViewModel with ValidatorMixin {
   final _navigationService = locator<NavigationService>();
-  @override
-  void setFormStatus() {}
-
-  // navigate to signup
-  nToSignup() {
-    _navigationService.navigateTo(Routes.signupView);
-    notifyListeners();
-  }
-
-  // naviagte to main page
-  nToMainPage() {}
-
-  // naviagte to main page
-  nToForgotPassword() {
-    _navigationService.navigateTo(Routes.forgotPasswordView);
-    notifyListeners();
-  }
 
   // email field error message
   String _errorMessage = '';
   // password field error message
   String _passwordErrorMessage = '';
+  // name field error message
+  String _nameError = '';
   // getter for email field error message
-  String get msg => _errorMessage;
+  String get emailErrorMessage => _errorMessage;
   // getter for password field error message
   String get passwordErrorMessage => _passwordErrorMessage;
+  // getter for name field error message
+  String get nameErrorMessage => _nameError;
   // validate form
   bool validateForm = false;
 
@@ -40,6 +27,13 @@ class LoginVm extends FormViewModel with ValidatorMixin {
   checkEmail() {
     // set email error message
     _errorMessage = validateEmail(emailValue!) ?? '';
+    notifyListeners();
+  }
+
+  // check for invalid email
+  checkName() {
+    // set email error message
+    _nameError = validateNotEmptyField(fullnameValue!, 'name') ?? '';
     notifyListeners();
   }
 
@@ -57,9 +51,19 @@ class LoginVm extends FormViewModel with ValidatorMixin {
     notifyListeners();
   }
 
-  // login
-  login() {
-    // start form validation
+  @override
+  void setFormStatus() {}
+
+  // naviagte to main page
+  nToLogin() {
+    _navigationService.navigateTo(Routes.loginView);
+  }
+
+  // navigate to otp
+  nToOtp() {}
+
+  // signup
+  signup() {
     formValidate();
   }
 }
