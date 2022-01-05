@@ -5,14 +5,20 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
 class SmallTextField extends StatelessWidget {
-  final String label;
+  final TextEditingController? controller;
+  final FocusNode? node;
+  final String? label;
+  final String? hint;
   final Widget? suffixIcon;
   final bool? error;
   final bool obscureText;
-  bool? isSearchField;
+  final bool? isSearchField;
   SmallTextField({
     Key? key,
-    required this.label,
+    this.controller,
+    this.node,
+    this.label,
+    this.hint,
     required this.obscureText,
     this.suffixIcon,
     this.error,
@@ -40,20 +46,25 @@ class SmallTextField extends StatelessWidget {
       ),
       child: Center(
         child: TextField(
+            controller: controller,
+            focusNode: node,
             style: AppTextStyle.textFieldInput,
             obscureText: obscureText,
             decoration: InputDecoration(
-                labelText: label,
+                // labelText: label,
+                hintText: hint,
+                hintStyle: AppTextStyle.helperText14,
                 labelStyle: AppTextStyle.helperText16,
-                contentPadding:
-                    EdgeInsets.symmetric(horizontal: contentPadding),
+                contentPadding: EdgeInsets.symmetric(
+                    horizontal: contentPadding,
+                    vertical: hint != null ? 10 : 0),
                 prefixIcon: isSearchField == true
                     ? SvgPicture.asset(
                         searchIcon,
                         width: 14,
                       )
                     : null,
-                prefixIconConstraints: BoxConstraints(minWidth: 30),
+                prefixIconConstraints: const BoxConstraints(minWidth: 30),
                 suffixIcon: isSearchField != true
                     ? error != null
                         ? goIcon()

@@ -23,6 +23,8 @@ class CatalogueProductModuleCard extends StatelessWidget {
   final bool itemAvailable;
   final String? label; // sales or new
   final int? salesValue;
+  final dynamic navToProductCardView;
+  final dynamic favoriteClick;
   const CatalogueProductModuleCard(
       {Key? key,
       required this.itemName,
@@ -33,6 +35,8 @@ class CatalogueProductModuleCard extends StatelessWidget {
       required this.starRating,
       required this.numberOfRatings,
       required this.itemAvailable,
+      required this.navToProductCardView,
+      required this.favoriteClick,
       this.width,
       this.label,
       this.salesValue})
@@ -43,7 +47,7 @@ class CatalogueProductModuleCard extends StatelessWidget {
     return ViewModelBuilder<CatalogProductCardVm>.reactive(
         viewModelBuilder: () => CatalogProductCardVm(),
         builder: (context, model, child) => Container(
-              height: 290, //itemAvailable ? 104 : 122,
+              height: 260, //itemAvailable ? 104 : 122,
               width: width ?? 164, //MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: UIHelper.smallBorderRadius,
@@ -57,136 +61,135 @@ class CatalogueProductModuleCard extends StatelessWidget {
                     ? AppColors.backgroundColor
                     : AppColors.whiteColor.withOpacity(0.5),
               ),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Stack(clipBehavior: Clip.none, children: [
-                    SizedBox(
-                      width: width != null ? width! / 2 : 164,
-                      height: 184,
-                      child: Image.asset(
-                        imageAssetName,
-                        fit: BoxFit.fill,
+              child: Stack(children: [
+                SizedBox(
+                  width: width != null ? width! / 2 : 164,
+                  height: 184,
+                  child: Image.asset(
+                    imageAssetName,
+                    fit: BoxFit.fill,
+                  ),
+                ),
+                Positioned(
+                  top: 8,
+                  left: 8,
+                  child: Visibility(
+                    visible: label != null,
+                    child: CustomRoundedLabel(
+                        tagText: label == newText.toUpperCase()
+                            ? newText.toUpperCase()
+                            : '-$salesValue%',
+                        color: label == newText.toUpperCase()
+                            ? AppColors.realBlack
+                            : AppColors.saleColor),
+                  ),
+                ),
+                Positioned(
+                  bottom: 0,
+                  child: Visibility(
+                    visible: !itemAvailable,
+                    child: Container(
+                      width: 164,
+                      height: 36,
+                      decoration: BoxDecoration(
+                        borderRadius: const BorderRadius.only(
+                          bottomLeft: Radius.circular(8),
+                          bottomRight: Radius.circular(8),
+                        ),
+                        color: AppColors.whiteColor.withOpacity(0.7),
                       ),
-                    ),
-                    Positioned(
-                      top: 8,
-                      left: 8,
-                      child: Visibility(
-                        visible: label != null,
-                        child: CustomRoundedLabel(
-                            tagText: label == newText.toUpperCase()
-                                ? newText.toUpperCase()
-                                : '-$salesValue%',
-                            color: label == newText.toUpperCase()
-                                ? AppColors.realBlack
-                                : AppColors.saleColor),
-                      ),
-                    ),
-                    Positioned(
-                        bottom: -20,
-                        right: 0,
-                        child: Visibility(
-                          visible: itemAvailable,
-                          child: Container(
-                            width: 36,
-                            height: 36,
-                            decoration: BoxDecoration(
-                              boxShadow: [
-                                BoxShadow(
-                                    color:
-                                        AppColors.realBlack.withOpacity(0.08),
-                                    offset: const Offset(0, 4),
-                                    blurRadius: 4)
-                              ],
-                              shape: BoxShape.circle,
-                              color: AppColors.whiteColor,
-                            ),
-                            child: RoundButton(
-                              onPressed: () {},
-                              fillColor: AppColors.whiteColor,
-                              width: 36,
-                              height: 36,
-                              iconName: favorite,
-                              iconColor: AppColors.appGrey,
-                              elevation: 0,
-                            ),
-                          ),
-                        )),
-                    Positioned(
-                      bottom: 0,
-                      child: Visibility(
-                        visible: !itemAvailable,
-                        child: Container(
-                          width: 164,
-                          height: 36,
-                          decoration: BoxDecoration(
-                            borderRadius: const BorderRadius.only(
-                              bottomLeft: Radius.circular(8),
-                              bottomRight: Radius.circular(8),
-                            ),
-                            color: AppColors.whiteColor.withOpacity(0.7),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 5.0, horizontal: 11),
-                            child: Text(
-                              soldOutText,
-                              style: AppTextStyle.normalText11Black,
-                            ),
-                          ),
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 5.0, horizontal: 11),
+                        child: Text(
+                          soldOutText,
+                          style: AppTextStyle.normalText11Black,
                         ),
                       ),
                     ),
-                  ]),
-                  Flexible(
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 7.0, horizontal: 11),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Flexible(
-                            child: RatingsBar(
-                                numberOfRatings: numberOfRatings,
-                                itemCount: starRating),
+                  ),
+                ),
+                Positioned.fill(
+                  top: 184,
+                  child: Container(
+                    color: Colors.transparent,
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: [
+                        UIHelper.verticalSpaceSmall,
+                        Flexible(
+                          // top: 192,
+                          child: RatingsBar(
+                              numberOfRatings: numberOfRatings,
+                              itemCount: starRating),
+                        ),
+                        UIHelper.verticalSpaceSmall,
+                        Flexible(
+                          // top: 214,
+                          //fit: FlexFit.tight,
+                          child: Text(brandName.toUpperCase(),
+                              style: AppTextStyle.helperText),
+                        ),
+                        UIHelper.verticalSpaceExtraSmall,
+                        Flexible(
+                            // top: 230,
+                            child: Text(itemName,
+                                style: AppTextStyle.subHeadText)),
+                        UIHelper.verticalSpaceExtraSmall,
+                        Flexible(
+                            // top: 250,
+                            child: RichText(
+                          text: TextSpan(
+                            children: <TextSpan>[
+                              TextSpan(
+                                  text: '$itemPrice\$ ',
+                                  style: label == sale.toUpperCase()
+                                      ? AppTextStyle.helperText14_500.copyWith(
+                                          decoration:
+                                              TextDecoration.lineThrough)
+                                      : AppTextStyle.descrItemText),
+                              TextSpan(
+                                  text: label == sale.toUpperCase()
+                                      ? '${itemPrice * 0.7}\$'
+                                      : '',
+                                  style: AppTextStyle.saleText14_500),
+                            ],
                           ),
-                          UIHelper.verticalSpaceSmall,
-                          Flexible(
-                            //fit: FlexFit.tight,
-                            child: Text(brandName.toUpperCase(),
-                                style: AppTextStyle.helperText),
-                          ),
-                          //UIHelper.verticalSpaceExtraSmall,
-                          Text(itemName, style: AppTextStyle.subHeadText),
-                          UIHelper.verticalSpaceSmall,
-
-                          Flexible(
-                              child: RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '$itemPrice\$ ',
-                                    style: label == sale.toUpperCase()
-                                        ? AppTextStyle.helperText14_500
-                                            .copyWith(
-                                                decoration:
-                                                    TextDecoration.lineThrough)
-                                        : AppTextStyle.descrItemText),
-                                TextSpan(
-                                    text: label == sale.toUpperCase()
-                                        ? '${itemPrice * 0.7}\$'
-                                        : '',
-                                    style: AppTextStyle.saleText14_500),
-                              ],
-                            ),
-                          )),
-                        ],
-                      ),
+                        )),
+                      ],
                     ),
                   ),
-                ],
-              ),
+                ),
+                Positioned(
+                    top: 166,
+                    right: 0,
+                    child: Visibility(
+                      visible: itemAvailable,
+                      child: Container(
+                        width: 36,
+                        height: 36,
+                        decoration: BoxDecoration(
+                          boxShadow: [
+                            BoxShadow(
+                                color: AppColors.realBlack.withOpacity(0.08),
+                                offset: const Offset(0, 4),
+                                blurRadius: 4)
+                          ],
+                          shape: BoxShape.circle,
+                          color: AppColors.whiteColor,
+                        ),
+                        child: RoundButton(
+                          onPressed: model.showSelectSize,
+                          fillColor: AppColors.whiteColor,
+                          width: 36,
+                          height: 36,
+                          iconName: favorite,
+                          iconColor: AppColors.appGrey,
+                          elevation: 0,
+                        ),
+                      ),
+                    )),
+              ]),
             ));
   }
 }

@@ -38,6 +38,10 @@ class Catalog2Page extends StatelessWidget {
                         UIHelper.horizontalSpaceMedium,
                         Flexible(
                           child: CatalogueProductModuleCard(
+                              favoriteClick: () =>
+                                  model.showSelectSizeBottomSheet(),
+                              navToProductCardView: () =>
+                                  model.navToProductCardView(),
                               width: screenHeightPercentage(context,
                                   percentage: 0.5),
                               itemName: 'T-Shirt SPANISH',
@@ -55,6 +59,10 @@ class Catalog2Page extends StatelessWidget {
                         ),
                         Flexible(
                           child: CatalogueProductModuleCard(
+                              favoriteClick: () =>
+                                  model.showSelectSizeBottomSheet(),
+                              navToProductCardView: () =>
+                                  model.navToProductCardView(),
                               width: screenHeightPercentage(context,
                                   percentage: 0.5),
                               itemName: 'Blouse',
@@ -75,7 +83,7 @@ class Catalog2Page extends StatelessWidget {
                 );
               },
               separatorBuilder: (BuildContext context, int index) {
-                return UIHelper.customVerticalSpace(0);
+                return UIHelper.customVerticalSpace(18);
               },
               itemCount: 3),
         ),

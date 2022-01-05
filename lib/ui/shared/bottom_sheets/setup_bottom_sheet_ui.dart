@@ -1,4 +1,5 @@
 import 'package:e_commerce/app/app.locator.dart';
+import 'package:e_commerce/ui/shared/bottom_sheets/promo_code/promo_code_bs.dart';
 import 'package:e_commerce/ui/shared/bottom_sheets/review_bs/review_bs.dart';
 import 'package:e_commerce/ui/shared/bottom_sheets/sort_by_bs/sort_by_bs.dart';
 import 'package:e_commerce/utils/enums.dart';
@@ -16,6 +17,8 @@ void setupBottomSheetUi() {
         SortByBottomSheet(request: sheetRequest, completer: completer),
     BottomSheetType.review: (context, sheetRequest, completer) =>
         ReviewsBottomSheet(request: sheetRequest, completer: completer),
+    BottomSheetType.promoCode: (context, sheetRequest, completer) =>
+        PromoCodeBottomSheet(request: sheetRequest, completer: completer),
   };
 
   bottomSheetService.setCustomSheetBuilders(builders);

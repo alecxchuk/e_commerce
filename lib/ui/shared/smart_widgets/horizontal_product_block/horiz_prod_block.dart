@@ -61,6 +61,8 @@ class ProductBlockHorizontal extends StatelessWidget {
                     child: Row(
                       children: [
                         CatalogueProductModuleCard(
+                            favoriteClick: () {},
+                            navToProductCardView: () {},
                             imageAssetName: stripeGirl,
                             label: title.toUpperCase(),
                             salesValue: 20,
@@ -73,6 +75,8 @@ class ProductBlockHorizontal extends StatelessWidget {
                             itemAvailable: true),
                         UIHelper.horizontalSpaceMedium,
                         CatalogueProductModuleCard(
+                            favoriteClick: () {},
+                            navToProductCardView: () {},
                             imageAssetName: whiteTshirtGuy,
                             label: title.toUpperCase(),
                             salesValue: 15,
@@ -85,6 +89,8 @@ class ProductBlockHorizontal extends StatelessWidget {
                             itemAvailable: true),
                         UIHelper.horizontalSpaceMedium,
                         CatalogueProductModuleCard(
+                            favoriteClick: () {},
+                            navToProductCardView: () {},
                             imageAssetName: coolGuy,
                             label: title.toUpperCase(),
                             salesValue: 20,

@@ -27,7 +27,7 @@ class RoundButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return RawMaterialButton(
-        onPressed: onPressed,
+        onPressed: () => onPressed(),
         elevation: elevation ?? 0,
         // fillColor == AppColors.whiteColor && iconName != plusButton
         //     ? 4

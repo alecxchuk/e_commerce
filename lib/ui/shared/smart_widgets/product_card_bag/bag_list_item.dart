@@ -13,11 +13,13 @@ class BagProductCard extends StatelessWidget {
   final String itemName;
   final String itemSize;
   final String itemPrice;
+  final VoidCallback showFav;
   const BagProductCard(
       {Key? key,
       required this.itemName,
       required this.itemSize,
-      required this.itemPrice})
+      required this.itemPrice,
+      required this.showFav})
       : super(key: key);
 
   @override
@@ -25,7 +27,7 @@ class BagProductCard extends StatelessWidget {
     return ViewModelBuilder<BagProductCardVm>.reactive(
         viewModelBuilder: () => BagProductCardVm(),
         builder: (context, model, child) => Container(
-              height: 110,
+              height: 104,
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: UIHelper.smallBorderRadius,
@@ -41,88 +43,92 @@ class BagProductCard extends StatelessWidget {
                 children: [
                   SizedBox(
                     width: 104,
-                    height: 110,
+                    height: 104,
                     child: Image.asset(
                       tShirtGuy,
-                      fit: BoxFit.fitHeight,
+                      fit: BoxFit.fill,
                     ),
                   ),
-                  SizedBox(
-                    width: MediaQuery.of(context).size.width - 120,
-                    child: Padding(
-                      padding: const EdgeInsets.symmetric(
-                          vertical: 8, horizontal: 12.0),
-                      child: Column(
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              Text(itemName, style: AppTextStyle.subHeadText),
-                              const Spacer(),
-                              InkWell(
-                                child: const Icon(
-                                  moreVertIcon,
-                                  color: AppColors.appGrey,
-                                ),
-                                onTap: () {},
-                              )
-                            ],
-                          ),
-                          RichText(
-                            text: TextSpan(
-                              children: <TextSpan>[
-                                TextSpan(
-                                    text: '$colorText: ',
-                                    style: AppTextStyle.helperText),
-                                TextSpan(
-                                    text: '$colorText: ',
-                                    style: AppTextStyle.normalText11Black),
-                                TextSpan(
-                                    text: '    $sizeText: ',
-                                    style: AppTextStyle.helperText),
-                                TextSpan(
-                                    text: '$itemSize ',
-                                    style: AppTextStyle.normalText11Black),
+                  Flexible(
+                    child: SizedBox(
+                      width: MediaQuery.of(context).size.width - 120,
+                      child: Padding(
+                        padding: const EdgeInsets.symmetric(
+                            vertical: 8, horizontal: 12.0),
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                Text(itemName, style: AppTextStyle.subHeadText),
+                                const Spacer(),
+                                InkWell(
+                                  child: const Icon(
+                                    moreVertIcon,
+                                    color: AppColors.appGrey,
+                                  ),
+                                  onTap: () {
+                                    showFav();
+                                  },
+                                )
                               ],
                             ),
-                          ),
-                          const Spacer(),
-                          Row(
-                            mainAxisSize: MainAxisSize.max,
-                            children: [
-                              RoundButton(
-                                onPressed: () => model.decreaseQuantity(),
-                                fillColor: AppColors.whiteColor,
-                                width: 36,
-                                height: 36,
-                                iconName: minusButton,
-                                iconColor: AppColors.appGrey,
-                                elevation: 2,
+                            RichText(
+                              text: TextSpan(
+                                children: <TextSpan>[
+                                  TextSpan(
+                                      text: '$colorText: ',
+                                      style: AppTextStyle.helperText),
+                                  TextSpan(
+                                      text: '$colorText: ',
+                                      style: AppTextStyle.normalText11Black),
+                                  TextSpan(
+                                      text: '    $sizeText: ',
+                                      style: AppTextStyle.helperText),
+                                  TextSpan(
+                                      text: '$itemSize ',
+                                      style: AppTextStyle.normalText11Black),
+                                ],
                               ),
-                              UIHelper.customHorizontalSpace(15),
-                              Text(
-                                model.itemQuantity.toString(),
-                                style: AppTextStyle.descrItemText,
-                              ),
-                              UIHelper.customHorizontalSpace(15),
-                              RoundButton(
-                                onPressed: () => model.increaseQuantity(),
-                                fillColor: AppColors.whiteColor,
-                                width: 36,
-                                height: 36,
-                                iconName: plusButton,
-                                iconColor: AppColors.appGrey,
-                                elevation: 2,
-                              ),
-                              const Spacer(),
-                              Text(
-                                '$itemPrice\$',
-                                style: AppTextStyle.descrItemText,
-                              ),
-                            ],
-                          ),
-                        ],
+                            ),
+                            const Spacer(),
+                            Row(
+                              mainAxisSize: MainAxisSize.max,
+                              children: [
+                                RoundButton(
+                                  onPressed: () => model.decreaseQuantity(),
+                                  fillColor: AppColors.whiteColor,
+                                  width: 36,
+                                  height: 36,
+                                  iconName: minusButton,
+                                  iconColor: AppColors.appGrey,
+                                  elevation: 2,
+                                ),
+                                UIHelper.customHorizontalSpace(15),
+                                Text(
+                                  model.itemQuantity.toString(),
+                                  style: AppTextStyle.descrItemText,
+                                ),
+                                UIHelper.customHorizontalSpace(15),
+                                RoundButton(
+                                  onPressed: () => model.increaseQuantity(),
+                                  fillColor: AppColors.whiteColor,
+                                  width: 36,
+                                  height: 36,
+                                  iconName: plusButton,
+                                  iconColor: AppColors.appGrey,
+                                  elevation: 2,
+                                ),
+                                const Spacer(),
+                                Text(
+                                  '$itemPrice\$',
+                                  style: AppTextStyle.descrItemText,
+                                ),
+                              ],
+                            ),
+                          ],
+                        ),
                       ),
                     ),
                   )

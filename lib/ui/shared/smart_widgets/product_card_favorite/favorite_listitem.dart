@@ -43,12 +43,12 @@ class FavoriteProductCard extends StatelessWidget {
               width: MediaQuery.of(context).size.width,
               decoration: BoxDecoration(
                 borderRadius: UIHelper.smallBorderRadius,
-                boxShadow: [
-                  BoxShadow(
-                      color: AppColors.realBlack.withOpacity(0.08),
-                      offset: const Offset(0, 1),
-                      blurRadius: 25)
-                ],
+                // boxShadow: [
+                //   BoxShadow(
+                //       color: AppColors.realBlack.withOpacity(0.08),
+                //       offset: const Offset(0, 1),
+                //       blurRadius: 25)
+                // ],
                 color: itemAvailable
                     ? AppColors.whiteColor
                     : AppColors.whiteColor.withOpacity(0.5),
@@ -58,33 +58,37 @@ class FavoriteProductCard extends StatelessWidget {
                 children: [
                   Flexible(
                     child: Row(
+                      mainAxisSize: MainAxisSize.min,
                       crossAxisAlignment: itemAvailable
                           ? CrossAxisAlignment.center
                           : CrossAxisAlignment.start,
                       children: [
-                        Stack(children: [
-                          SizedBox(
-                            width: 104,
-                            child: Image.asset(
-                              jeansGuy,
-                              //fit: BoxFit.fitHeight,
+                        Flexible(
+                          child: Stack(children: [
+                            SizedBox(
+                              width: 104,
+                              height: 104,
+                              child: Image.asset(
+                                jeansGuy,
+                                fit: BoxFit.fill,
+                              ),
                             ),
-                          ),
-                          Positioned(
-                            top: 5,
-                            left: 4,
-                            child: Visibility(
-                              visible: label != null,
-                              child: CustomRoundedLabel(
-                                  tagText: label == newText
-                                      ? newText
-                                      : '-$salesValue%',
-                                  color: label == newText
-                                      ? AppColors.realBlack
-                                      : AppColors.saleColor),
+                            Positioned(
+                              top: 5,
+                              left: 4,
+                              child: Visibility(
+                                visible: label != null,
+                                child: CustomRoundedLabel(
+                                    tagText: label == newText
+                                        ? newText
+                                        : '-$salesValue%',
+                                    color: label == newText
+                                        ? AppColors.realBlack
+                                        : AppColors.saleColor),
+                              ),
                             ),
-                          ),
-                        ]),
+                          ]),
+                        ),
                         SizedBox(
                           width: MediaQuery.of(context).size.width - 120,
                           child: Padding(
@@ -103,9 +107,13 @@ class FavoriteProductCard extends StatelessWidget {
                                             style: AppTextStyle.helperText),
                                         const Spacer(),
                                         InkWell(
-                                          child: const Icon(
-                                            cancelIcon,
-                                            color: AppColors.appGrey,
+                                          child: Opacity(
+                                            opacity: 0.54,
+                                            child: const Icon(
+                                              cancelIcon,
+                                              size: 20,
+                                              color: AppColors.appGrey,
+                                            ),
                                           ),
                                           onTap: () {},
                                         )

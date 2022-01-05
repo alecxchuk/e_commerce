@@ -10,12 +10,16 @@ class FilterMenu extends StatelessWidget {
   final String priceChoice;
   final Color bgColor;
   final VoidCallback navToFilterPage;
+  final VoidCallback setLayoutType;
   final dynamic showSortBottomSheet;
+  final bool isGridView; // grid or list view
   const FilterMenu(
       {Key? key,
       required this.priceChoice,
       required this.navToFilterPage,
+      required this.setLayoutType,
       required this.showSortBottomSheet,
+      required this.isGridView,
       this.bgColor = AppColors.backgroundColor})
       : super(key: key);
 
@@ -43,7 +47,10 @@ class FilterMenu extends StatelessWidget {
         Text(price + ':', style: AppTextStyle.normalText11Black),
         Text(priceChoice, style: AppTextStyle.normalText11Black),
         const Spacer(),
-        SvgPicture.asset(filterboxIcon),
+        GestureDetector(
+            onTap: () =>
+                setLayoutType(), // toggles between grid and list layouts
+            child: SvgPicture.asset(isGridView ? gridViewIcon : listViewIcon)),
         UIHelper.horizontalSpaceMedium,
       ]),
     );

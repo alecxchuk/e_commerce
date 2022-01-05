@@ -21,12 +21,15 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
   final double elevation;
   final List<String> catalogTagsList;
   final bool isCatalog;
+  final bool? isGridView; // grid or list view
+  final VoidCallback? setLayoutType;
   final VoidCallback? navToFilterPage;
   const AconAppBar(
       {Key? key,
       required this.bgColor,
       required this.onBackPress,
       this.navToFilterPage, // function that navigates to filter page
+      this.setLayoutType, // function sets the layout to either list or grid view
       this.shadowColor,
       this.headlineText,
       this.centerTitle,
@@ -34,6 +37,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
       this.isShare = false,
       this.elevation = 0,
       this.catalogTagsList = catalogTags,
+      this.isGridView,
       this.isCatalog = false})
       : super(key: key);
 
@@ -105,6 +109,8 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
                       Visibility(
                           visible: isCatalog,
                           child: FilterMenu(
+                            isGridView: isGridView ?? false,
+                            setLayoutType: setLayoutType ?? () {},
                             priceChoice: lowestToHigh,
                             navToFilterPage: navToFilterPage ?? () {},
                             showSortBottomSheet:
@@ -128,7 +134,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
       actions: isSearch || isShare
           ? [
               Visibility(
-                visible: isSearch,
+                visible: isSearch, // if true shows search icon
                 child: IconButton(
                   icon: const Icon(
                     Icons.search,
@@ -139,7 +145,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
                 ),
               ),
               Visibility(
-                visible: isShare,
+                visible: isShare, // if true shows the share button
                 child: IconButton(
                   icon: const Icon(
                     shareIcon,

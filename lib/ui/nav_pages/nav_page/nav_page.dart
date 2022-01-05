@@ -8,8 +8,10 @@ import 'package:e_commerce/ui/shared/ui_bars/rectangular.dart';
 import 'package:e_commerce/ui/view/catalog2/catalog2.dart';
 import 'package:e_commerce/ui/view/category1_view/category1.dart';
 import 'package:e_commerce/ui/view/category2/category2.dart';
+import 'package:e_commerce/ui/view/favourites/favorites_view.dart';
 import 'package:e_commerce/ui/view/fogot_password/forgot_password.dart';
 import 'package:e_commerce/ui/view/login/login_view.dart';
+import 'package:e_commerce/ui/view/my_bag/my_bag_view.dart';
 import 'package:e_commerce/ui/view/signup/signup_view.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -75,9 +77,9 @@ class NavPage extends StatelessWidget {
       case 1:
         return const MainPage2();
       case 2:
-        return const MainPage3();
+        return MyBagView();
       case 3:
-        return CategoriesPage();
+        return FavoriteView();
       default:
         return Catalog2Page();
     }

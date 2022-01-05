@@ -76,6 +76,8 @@ class AppTextStyle {
       _base(_size14, _weight500, AppColors.appGrey);
   static TextStyle helperText16 =
       _base(_size16, _normalWeight, AppColors.appGrey);
+  static TextStyle helperText16_500 =
+      _base(_size16, _weight600, AppColors.appGrey);
 
   static TextStyle saleText10 =
       _base(_size14, _normalWeight, AppColors.saleColor);

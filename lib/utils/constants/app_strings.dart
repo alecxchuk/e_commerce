@@ -118,6 +118,7 @@ const String boys = 'Boys';
 const String girls = 'Girls';
 
 const String youCanLikeThis = 'You can alse like this';
+const String favorites = 'Favorites';
 
 //Snackbar
 const String noInternet = 'No internet connection, connect and try again.';

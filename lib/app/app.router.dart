@@ -15,16 +15,24 @@ import '../ui/nav_pages/main_page/main_page.dart';
 import '../ui/nav_pages/main_page2/main_page2.dart';
 import '../ui/nav_pages/main_page3/main_page3.dart';
 import '../ui/nav_pages/nav_page/nav_page.dart';
+import '../ui/view/add_shipping_address/add_shipping_address_view.dart';
 import '../ui/view/brand/brand_view.dart';
 import '../ui/view/catalog1/catalog1.dart';
 import '../ui/view/catalog2/catalog2.dart';
 import '../ui/view/category2/category2.dart';
+import '../ui/view/checkout/checkout_view.dart';
+import '../ui/view/favourites/favorites_view.dart';
 import '../ui/view/filters/filters.dart';
 import '../ui/view/fogot_password/forgot_password.dart';
 import '../ui/view/login/login_view.dart';
+import '../ui/view/my_bag/my_bag_view.dart';
+import '../ui/view/payment/payment_method_view.dart';
 import '../ui/view/product_card_view/product_card_view.dart';
 import '../ui/view/ratings_and_review/ratings_and_review.dart';
+import '../ui/view/shipping_address/shipping_address_view.dart';
 import '../ui/view/signup/signup_view.dart';
+import '../ui/view/success/success_2.dart';
+import '../ui/view/success/success_view.dart';
 
 class Routes {
   static const String loginView = '/login-view';
@@ -42,6 +50,14 @@ class Routes {
   static const String brandPageView = '/brand-page-view';
   static const String productCardView = '/product-card-view';
   static const String ratingsAndReviewView = '/ratings-and-review-view';
+  static const String favoriteView = '/favorite-view';
+  static const String myBagView = '/my-bag-view';
+  static const String checkoutView = '/checkout-view';
+  static const String paymentMethodView = '/payment-method-view';
+  static const String shippingAddress = '/shipping-address';
+  static const String addShippingAddress = '/add-shipping-address';
+  static const String successView = '/success-view';
+  static const String successView2 = '/success-view2';
   static const all = <String>{
     loginView,
     signupView,
@@ -58,6 +74,14 @@ class Routes {
     brandPageView,
     productCardView,
     ratingsAndReviewView,
+    favoriteView,
+    myBagView,
+    checkoutView,
+    paymentMethodView,
+    shippingAddress,
+    addShippingAddress,
+    successView,
+    successView2,
   };
 }
 
@@ -80,6 +104,14 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.brandPageView, page: BrandPageView),
     RouteDef(Routes.productCardView, page: ProductCardView),
     RouteDef(Routes.ratingsAndReviewView, page: RatingsAndReviewView),
+    RouteDef(Routes.favoriteView, page: FavoriteView),
+    RouteDef(Routes.myBagView, page: MyBagView),
+    RouteDef(Routes.checkoutView, page: CheckoutView),
+    RouteDef(Routes.paymentMethodView, page: PaymentMethodView),
+    RouteDef(Routes.shippingAddress, page: ShippingAddress),
+    RouteDef(Routes.addShippingAddress, page: AddShippingAddress),
+    RouteDef(Routes.successView, page: SuccessView),
+    RouteDef(Routes.successView2, page: SuccessView2),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -187,6 +219,57 @@ class StackedRouter extends RouterBase {
         settings: data,
       );
     },
+    FavoriteView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const FavoriteView(),
+        settings: data,
+      );
+    },
+    MyBagView: (data) {
+      var args = data.getArgs<MyBagViewArguments>(
+        orElse: () => MyBagViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => MyBagView(key: args.key),
+        settings: data,
+      );
+    },
+    CheckoutView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const CheckoutView(),
+        settings: data,
+      );
+    },
+    PaymentMethodView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const PaymentMethodView(),
+        settings: data,
+      );
+    },
+    ShippingAddress: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ShippingAddress(),
+        settings: data,
+      );
+    },
+    AddShippingAddress: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const AddShippingAddress(),
+        settings: data,
+      );
+    },
+    SuccessView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SuccessView(),
+        settings: data,
+      );
+    },
+    SuccessView2: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const SuccessView2(),
+        settings: data,
+      );
+    },
   };
 }
 
@@ -217,4 +300,10 @@ class Categories2PageArguments {
   final Key? key;
   final PageController controller;
   Categories2PageArguments({this.key, required this.controller});
+}
+
+/// MyBagView arguments holder class
+class MyBagViewArguments {
+  final Key? key;
+  MyBagViewArguments({this.key});
 }
