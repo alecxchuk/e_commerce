@@ -34,6 +34,9 @@ const mastercardIcon = 'assets/svg_icons/mastercard.svg';
 const fedexIcon = 'assets/svg_icons/fedex.svg';
 const upsIcon = 'assets/svg_icons/usps.svg';
 const dhlIcon = 'assets/svg_icons/dhl.svg';
+const masterCardBottomDesign = 'assets/cards/mastercard_design.svg';
+const cardChip = 'assets/cards/chip.svg';
+const visaLogo = 'assets/cards/visa_logo.svg';
 
 const cameraIcon = Icons.camera_alt;
 const favoriteIcon = Icons.favorite;
@@ -78,6 +81,8 @@ const whitePrettyGirl = 'assets/images/white_pretty_girl.png';
 const blackTshirtGirl = 'assets/images/black_tshirt_girl.png';
 const shortDressGirl = 'assets/images/short_dress_girl.png';
 const turtleNeckGirl = 'assets/images/turtle_neck_girl.png';
+const successGirl = 'assets/images/success_girl.png';
+const successBags = 'assets/images/success_bags.png';
 
 List<String> bottomNavBarList = ['Home', 'Shop', 'Bag', 'Fav', 'Profile'];
 

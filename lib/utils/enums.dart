@@ -11,7 +11,14 @@ enum CustomUserProfileButtonType { normal, icon }
 
 enum PostFileType { text, app }
 
-enum BottomSheetType { selectSize, sortBy, review, promoCode }
+enum BottomSheetType {
+  selectSize,
+  sortBy,
+  review,
+  promoCode,
+  addNewCard,
+  passwordChange
+}
 
 /// The type of snackbar to show
 enum SnackbarType {

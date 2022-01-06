@@ -12,6 +12,7 @@ import 'package:e_commerce/ui/view/favourites/favorites_view.dart';
 import 'package:e_commerce/ui/view/fogot_password/forgot_password.dart';
 import 'package:e_commerce/ui/view/login/login_view.dart';
 import 'package:e_commerce/ui/view/my_bag/my_bag_view.dart';
+import 'package:e_commerce/ui/view/profile/profile.dart';
 import 'package:e_commerce/ui/view/signup/signup_view.dart';
 import 'package:e_commerce/utils/constants/colors.dart';
 import 'package:flutter/material.dart';
@@ -81,7 +82,7 @@ class NavPage extends StatelessWidget {
       case 3:
         return FavoriteView();
       default:
-        return Catalog2Page();
+        return ProfileView();
     }
   }
 }

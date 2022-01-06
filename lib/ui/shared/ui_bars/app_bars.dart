@@ -15,7 +15,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
   final String? centerTitle;
   final Color bgColor;
   final Color? shadowColor;
-  final Function onBackPress;
+  final Function? onBackPress;
   final bool isSearch;
   final bool isShare;
   final double elevation;
@@ -27,7 +27,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
   const AconAppBar(
       {Key? key,
       required this.bgColor,
-      required this.onBackPress,
+      this.onBackPress,
       this.navToFilterPage, // function that navigates to filter page
       this.setLayoutType, // function sets the layout to either list or grid view
       this.shadowColor,
@@ -123,14 +123,16 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
               ),
               preferredSize: const Size.fromHeight(70))
           : null,
-      leading: IconButton(
-        icon: const Icon(
-          backIcon,
-          color: AppColors.blackColor,
-          size: 20,
-        ),
-        onPressed: () => onBackPress(),
-      ),
+      leading: onBackPress != null
+          ? IconButton(
+              icon: const Icon(
+                backIcon,
+                color: AppColors.blackColor,
+                size: 20,
+              ),
+              onPressed: () => onBackPress!(),
+            )
+          : null,
       actions: isSearch || isShare
           ? [
               Visibility(
@@ -141,7 +143,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.blackColor,
                     size: 24,
                   ),
-                  onPressed: () => onBackPress(),
+                  onPressed: () => () {},
                 ),
               ),
               Visibility(
@@ -152,7 +154,7 @@ class AconAppBar extends StatelessWidget implements PreferredSizeWidget {
                     color: AppColors.blackColor,
                     size: 24,
                   ),
-                  onPressed: () => onBackPress(),
+                  onPressed: () => () {},
                 ),
               ),
             ]

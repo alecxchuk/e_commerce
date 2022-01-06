@@ -26,9 +26,13 @@ import '../ui/view/filters/filters.dart';
 import '../ui/view/fogot_password/forgot_password.dart';
 import '../ui/view/login/login_view.dart';
 import '../ui/view/my_bag/my_bag_view.dart';
+import '../ui/view/order_details/order_details.dart';
+import '../ui/view/orders/orders.dart';
 import '../ui/view/payment/payment_method_view.dart';
 import '../ui/view/product_card_view/product_card_view.dart';
+import '../ui/view/profile/profile.dart';
 import '../ui/view/ratings_and_review/ratings_and_review.dart';
+import '../ui/view/settings/settings.dart';
 import '../ui/view/shipping_address/shipping_address_view.dart';
 import '../ui/view/signup/signup_view.dart';
 import '../ui/view/success/success_2.dart';
@@ -58,6 +62,10 @@ class Routes {
   static const String addShippingAddress = '/add-shipping-address';
   static const String successView = '/success-view';
   static const String successView2 = '/success-view2';
+  static const String profileView = '/profile-view';
+  static const String settingsView = '/settings-view';
+  static const String ordersView = '/orders-view';
+  static const String orderDetailsView = '/order-details-view';
   static const all = <String>{
     loginView,
     signupView,
@@ -82,6 +90,10 @@ class Routes {
     addShippingAddress,
     successView,
     successView2,
+    profileView,
+    settingsView,
+    ordersView,
+    orderDetailsView,
   };
 }
 
@@ -112,6 +124,10 @@ class StackedRouter extends RouterBase {
     RouteDef(Routes.addShippingAddress, page: AddShippingAddress),
     RouteDef(Routes.successView, page: SuccessView),
     RouteDef(Routes.successView2, page: SuccessView2),
+    RouteDef(Routes.profileView, page: ProfileView),
+    RouteDef(Routes.settingsView, page: SettingsView),
+    RouteDef(Routes.ordersView, page: OrdersView),
+    RouteDef(Routes.orderDetailsView, page: OrderDetailsView),
   ];
   @override
   Map<Type, StackedRouteFactory> get pagesMap => _pagesMap;
@@ -253,8 +269,11 @@ class StackedRouter extends RouterBase {
       );
     },
     AddShippingAddress: (data) {
+      var args = data.getArgs<AddShippingAddressArguments>(
+        orElse: () => AddShippingAddressArguments(),
+      );
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const AddShippingAddress(),
+        builder: (context) => AddShippingAddress(key: args.key),
         settings: data,
       );
     },
@@ -267,6 +286,33 @@ class StackedRouter extends RouterBase {
     SuccessView2: (data) {
       return MaterialPageRoute<dynamic>(
         builder: (context) => const SuccessView2(),
+        settings: data,
+      );
+    },
+    ProfileView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const ProfileView(),
+        settings: data,
+      );
+    },
+    SettingsView: (data) {
+      var args = data.getArgs<SettingsViewArguments>(
+        orElse: () => SettingsViewArguments(),
+      );
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => SettingsView(key: args.key),
+        settings: data,
+      );
+    },
+    OrdersView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const OrdersView(),
+        settings: data,
+      );
+    },
+    OrderDetailsView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const OrderDetailsView(),
         settings: data,
       );
     },
@@ -306,4 +352,16 @@ class Categories2PageArguments {
 class MyBagViewArguments {
   final Key? key;
   MyBagViewArguments({this.key});
+}
+
+/// AddShippingAddress arguments holder class
+class AddShippingAddressArguments {
+  final Key? key;
+  AddShippingAddressArguments({this.key});
+}
+
+/// SettingsView arguments holder class
+class SettingsViewArguments {
+  final Key? key;
+  SettingsViewArguments({this.key});
 }

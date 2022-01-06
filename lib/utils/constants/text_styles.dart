@@ -40,6 +40,10 @@ class AppTextStyle {
       _base(_size11, _weight600, AppColors.whiteColor);
   static TextStyle subHeadTextWhite =
       _base(_size16, _weight600, AppColors.whiteColor);
+  static TextStyle subHeadText10White =
+      _base(_size10, _weight600, AppColors.whiteColor);
+  static TextStyle subHeadText14White =
+      _base(_size11, _weight600, AppColors.whiteColor);
 
   static TextStyle texts = _base(_size16, _normalWeight, AppColors.blackColor);
 

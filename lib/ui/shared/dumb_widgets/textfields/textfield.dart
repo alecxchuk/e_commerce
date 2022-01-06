@@ -15,10 +15,12 @@ class CustomTextField extends StatelessWidget {
   final dynamic onChanged;
   final double height;
   final int? maxLines;
+  final EdgeInsets? contentPadding;
+  final BoxConstraints? suffixIconConstraints;
   const CustomTextField(
       {Key? key,
       this.label,
-      required this.obscureText,
+      this.obscureText = false,
       required this.onChanged,
       this.hintText,
       this.suffixIcon,
@@ -28,9 +30,11 @@ class CustomTextField extends StatelessWidget {
       this.textInputAction,
       this.height = 64,
       this.maxLines,
-      this.keyboardType})
+      this.keyboardType,
+      this.contentPadding,
+      this.suffixIconConstraints})
       : super(key: key);
-  final double contentPadding = 20.0;
+  // final double contentPadding = 20.0;
   final double borderRadius = 4.0;
   // final  double textfieldHeight = 64.0;
 
@@ -58,7 +62,7 @@ class CustomTextField extends StatelessWidget {
             onChanged: (x) => onChanged(x),
             // validator: validate,
             style: maxLines == null
-                ? AppTextStyle.textFieldInput
+                ? AppTextStyle.textFieldInput.copyWith(height: 1.5)
                 : AppTextStyle.normalText14Black.copyWith(height: 1.5),
             obscureText: obscureText,
             maxLines: maxLines ?? 1,
@@ -67,10 +71,11 @@ class CustomTextField extends StatelessWidget {
                 hintText: hintText,
                 hintStyle: AppTextStyle.helperText14,
                 labelStyle: AppTextStyle.helperText14,
-                contentPadding: EdgeInsets.symmetric(
-                    horizontal: contentPadding,
-                    vertical: maxLines != null ? 12 : 0),
+                contentPadding: contentPadding ??
+                    EdgeInsets.symmetric(
+                        horizontal: 20, vertical: maxLines != null ? 12 : 0),
                 suffixIcon: suffixIcon,
+                suffixIconConstraints: suffixIconConstraints,
                 border: InputBorder.none,
                 errorBorder: const OutlineInputBorder(
                   borderSide: BorderSide(

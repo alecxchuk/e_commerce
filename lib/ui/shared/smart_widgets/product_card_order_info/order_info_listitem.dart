@@ -52,7 +52,7 @@ class OrderInfoProductCard extends StatelessWidget {
                     ),
                   ),
                   SizedBox(
-                    width: MediaQuery.of(context).size.width - 120,
+                    width: MediaQuery.of(context).size.width - 136,
                     child: Padding(
                       padding: const EdgeInsets.symmetric(
                           vertical: 8, horizontal: 12.0),

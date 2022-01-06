@@ -32,6 +32,9 @@ const String yourReview = 'Your review';
 const String sendReview = 'Send review';
 const String pleaseShareOpinion = 'Please share your opinion about the product';
 
+// add new card bottom sheet
+const String addNewCard = 'Add new card';
+
 const String colorText = 'Color';
 const String sizeText = 'Size';
 const String unitText = 'Unit';
@@ -52,6 +55,12 @@ const String quantityText = 'Quantity';
 const String totalAmount = 'Total amount';
 const String detailsText = 'Details';
 const String deliveredText = 'Delivered';
+const String processingText = 'Processing';
+const String cancelledText = 'Cancelled';
+const String orderDetailsText = 'Order Details';
+const String orderInformationText = 'Order information';
+const String discountText = 'Discount';
+const String totalAmountText = 'Total Amount';
 
 const dollarSign = '\$';
 
@@ -117,8 +126,51 @@ const String men = 'Men';
 const String boys = 'Boys';
 const String girls = 'Girls';
 
-const String youCanLikeThis = 'You can alse like this';
+const String youCanLikeThis = 'You can also like this';
 const String favorites = 'Favorites';
+
+const String yourPaymentCards = 'Your payment cards';
+const String paymentMethods = 'Payment methods';
+const String paymentMethodText = 'Payment method';
+const String cardHolderName = 'Card Holder Name';
+const String expiryDateText = 'Expiry Date';
+const String useAsDefaultPayment = 'Use as default payment method';
+const String setAsDefaultPayment = 'Set as default payment method';
+
+const String shippingAddressText = 'Shipping address';
+const String shippingAddressesText = 'Shipping addresses';
+const String addingShippingAddressText = 'Adding Shipping Address';
+const String useAsDefaultShippingAddress = 'Use as default shipping address';
+const String setAsDefaultShippingAddress = 'Set as default shipping address';
+
+const String checkoutText = 'checkoutText';
+const String changeText = 'Change';
+const String paymentText = 'Payment';
+const String deliveryMethodText = 'Delivery method';
+const String submitOrderText = 'Submit Order';
+const String deliveryText = 'Delivery';
+const String summaryText = 'Summary';
+const String successText = 'Success';
+const String continueShipping = 'Continue Shipping';
+const String orderSuccessfulMessage =
+    'Your order will be delivered soon. Thank you for choosing our app!';
+
+const String myProfileText = 'My profile';
+const String myOrdersText = 'My orders';
+const String promocodesText = 'Promocodes';
+const String myReviewsText = 'My reviews';
+const String settingsText = 'Settings';
+const String reorderText = 'Reorder';
+const String leaveFeedbackText = 'Leave feedback';
+const String personalInformationText = 'Personal Information';
+const String notificationsText = 'Notifications';
+const String newArrivalsText = 'New arrivals';
+const String deliveryStatusChangesText = 'Delivery status changes';
+const String passwordChangeText = 'Password Change';
+const String oldPasswordText = 'Old Password';
+const String newPasswordText = 'New Password';
+const String repeatNewPasswordText = 'Repeat New Password';
+const String savePasswordText = 'Save Password';
 
 //Snackbar
 const String noInternet = 'No internet connection, connect and try again.';

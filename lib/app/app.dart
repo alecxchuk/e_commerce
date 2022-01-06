@@ -14,9 +14,13 @@ import 'package:e_commerce/ui/view/filters/filters.dart';
 import 'package:e_commerce/ui/view/fogot_password/forgot_password.dart';
 import 'package:e_commerce/ui/view/login/login_view.dart';
 import 'package:e_commerce/ui/view/my_bag/my_bag_view.dart';
+import 'package:e_commerce/ui/view/order_details/order_details.dart';
+import 'package:e_commerce/ui/view/orders/orders.dart';
 import 'package:e_commerce/ui/view/payment/payment_method_view.dart';
 import 'package:e_commerce/ui/view/product_card_view/product_card_view.dart';
+import 'package:e_commerce/ui/view/profile/profile.dart';
 import 'package:e_commerce/ui/view/ratings_and_review/ratings_and_review.dart';
+import 'package:e_commerce/ui/view/settings/settings.dart';
 import 'package:e_commerce/ui/view/shipping_address/shipping_address_view.dart';
 import 'package:e_commerce/ui/view/signup/signup_view.dart';
 import 'package:e_commerce/ui/view/success/success_2.dart';
@@ -49,6 +53,10 @@ import 'package:stacked_services/stacked_services.dart';
     MaterialRoute(page: AddShippingAddress),
     MaterialRoute(page: SuccessView),
     MaterialRoute(page: SuccessView2),
+    MaterialRoute(page: ProfileView),
+    MaterialRoute(page: SettingsView),
+    MaterialRoute(page: OrdersView),
+    MaterialRoute(page: OrderDetailsView),
     //CupertinoRoute(page: SecondView),
   ],
   dependencies: [

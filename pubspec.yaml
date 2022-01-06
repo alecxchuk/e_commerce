@@ -88,6 +88,7 @@ flutter:
     - assets/svg_icons/
     - assets/png_icons/
     - assets/images/
+    - assets/cards/
   uses-material-design: true
 
   # To add assets to your application, add an assets section, like this:

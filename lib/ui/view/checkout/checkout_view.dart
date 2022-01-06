@@ -23,7 +23,7 @@ class CheckoutView extends StatelessWidget {
         appBar: AconAppBar(
           bgColor: AppColors.whiteColor,
           onBackPress: () {},
-          centerTitle: 'Checkout',
+          centerTitle: checkoutText,
           isSearch: false,
         ),
         body: SingleChildScrollView(
@@ -33,7 +33,7 @@ class CheckoutView extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 UIHelper.verticalSpaceLarge,
-                Text('Shipping address', style: AppTextStyle.subHeadText),
+                Text(shippingAddressText, style: AppTextStyle.subHeadText),
                 UIHelper.customVerticalSpace(21),
                 // Figma Flutter Generator BgWidget - RECTANGLE
                 Container(
@@ -60,9 +60,12 @@ class CheckoutView extends StatelessWidget {
                             style: AppTextStyle.helperText14_500
                                 .copyWith(color: AppColors.blackColor),
                           ),
-                          Text(
-                            'Change',
-                            style: AppTextStyle.saleText14_500,
+                          GestureDetector(
+                            onTap: () => model.nToShipping(),
+                            child: Text(
+                              changeText,
+                              style: AppTextStyle.saleText14_500,
+                            ),
                           )
                         ],
                       ),
@@ -79,13 +82,16 @@ class CheckoutView extends StatelessWidget {
                 Row(
                   children: [
                     Text(
-                      'Payment',
+                      paymentText,
                       style: AppTextStyle.subHeadText,
                     ),
                     const Spacer(),
-                    Text(
-                      'Change',
-                      style: AppTextStyle.saleText14_500,
+                    GestureDetector(
+                      onTap: () => model.nToPayment(),
+                      child: Text(
+                        changeText,
+                        style: AppTextStyle.saleText14_500,
+                      ),
                     ),
                     UIHelper.customHorizontalSpace(23)
                   ],
@@ -122,7 +128,7 @@ class CheckoutView extends StatelessWidget {
                 ),
                 UIHelper.customVerticalSpace(51),
                 Text(
-                  'Delivery method',
+                  deliveryMethodText,
                   style: AppTextStyle.subHeadText,
                 ),
                 UIHelper.customVerticalSpace(21),
@@ -136,19 +142,21 @@ class CheckoutView extends StatelessWidget {
                   ],
                 ),
                 UIHelper.customVerticalSpace(68),
-                TextHelper(label: orderText, amount: '112'),
+                const TextHelper(label: orderText, amount: '112'),
                 UIHelper.customVerticalSpace(21),
-                TextHelper(label: 'Delivery', amount: '15'),
+                const TextHelper(label: deliveryText, amount: '15'),
                 UIHelper.customVerticalSpace(21),
-                TextHelper(label: 'Summary', amount: '127'),
+                const TextHelper(label: summaryText, amount: '127'),
                 UIHelper.customVerticalSpace(26),
                 PrimaryButton(
-                    onPressed: () {},
-                    label: 'Submit Order',
+                    onPressed: () {
+                      model.nToSuccess();
+                    },
+                    label: submitOrderText,
                     outlined: false,
                     active: true),
                 UIHelper.customVerticalSpace(33),
-                Align(
+                const Align(
                     alignment: Alignment.center,
                     child: RectangleBar(
                       color: AppColors.realBlack,

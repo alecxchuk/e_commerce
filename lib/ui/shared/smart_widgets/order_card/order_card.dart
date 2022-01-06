@@ -23,92 +23,86 @@ class OrderCard extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      width: 343,
-      height: 164,
+      height: 170,
+      padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
       decoration: BoxDecoration(
         borderRadius: UIHelper.smallBorderRadius,
         boxShadow: [
           BoxShadow(
-              color: AppColors.realBlack.withOpacity(0.1),
+              color: AppColors.realBlack.withOpacity(0.01),
               offset: const Offset(0, 1),
               blurRadius: 24)
         ],
         color: AppColors.whiteColor,
       ),
-      child: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 20.0, vertical: 18),
-        child: Column(
-          crossAxisAlignment: CrossAxisAlignment.start,
-          children: [
-            Flexible(
-              child: Row(
-                children: [
-                  Text(
-                    '$orderText №$orderNumber',
-                    style: AppTextStyle.subHeadText,
-                  ),
-                  const Spacer(),
-                  Text(
-                    orderDate,
-                    style: AppTextStyle.helperText14,
-                  )
-                ],
+      child: Column(
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: [
+          Row(
+            children: [
+              Text(
+                '$orderText №$orderNumber',
+                style: AppTextStyle.subHeadText,
               ),
+              const Spacer(),
+              Text(
+                orderDate,
+                style: AppTextStyle.helperText14,
+              )
+            ],
+          ),
+          UIHelper.customVerticalSpace(15),
+          RichText(
+            text: TextSpan(
+              children: <TextSpan>[
+                TextSpan(
+                    text: '$trackingNumber: ',
+                    style: AppTextStyle.helperText14),
+                TextSpan(
+                    text: orderTrackingNumber,
+                    style: AppTextStyle.descrItemText),
+              ],
             ),
-            UIHelper.customVerticalSpace(15),
-            Flexible(
-              child: RichText(
-                text: TextSpan(
-                  children: <TextSpan>[
-                    TextSpan(
-                        text: '$trackingNumber: ',
-                        style: AppTextStyle.helperText14),
-                    TextSpan(
-                        text: orderTrackingNumber,
-                        style: AppTextStyle.descrItemText),
-                  ],
+          ),
+          UIHelper.verticalSpaceExtraSmall,
+          // const Spacer(),
+          Row(
+            mainAxisAlignment: MainAxisAlignment.spaceBetween,
+            children: [
+              Flexible(
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: '$quantityText: ',
+                          style: AppTextStyle.helperText14),
+                      TextSpan(
+                          text: '$orderQuantity ',
+                          style: AppTextStyle.subHeadText),
+                    ],
+                  ),
                 ),
               ),
-            ),
-            UIHelper.verticalSpaceExtraSmall,
-            Flexible(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                children: [
-                  Flexible(
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '$quantityText: ',
-                              style: AppTextStyle.helperText14),
-                          TextSpan(
-                              text: '$orderQuantity ',
-                              style: AppTextStyle.subHeadText),
-                        ],
-                      ),
-                    ),
+              //const Spacer(),
+              Flexible(
+                child: RichText(
+                  text: TextSpan(
+                    children: <TextSpan>[
+                      TextSpan(
+                          text: '$totalAmount: ',
+                          style: AppTextStyle.helperText14),
+                      TextSpan(
+                          text: '$totalPrice\$',
+                          style: AppTextStyle.subHeadText),
+                    ],
                   ),
-                  //const Spacer(),
-                  Flexible(
-                    child: RichText(
-                      text: TextSpan(
-                        children: <TextSpan>[
-                          TextSpan(
-                              text: '$totalAmount: ',
-                              style: AppTextStyle.helperText14),
-                          TextSpan(
-                              text: '$totalPrice\$',
-                              style: AppTextStyle.subHeadText),
-                        ],
-                      ),
-                    ),
-                  ),
-                ],
+                ),
               ),
-            ),
-            UIHelper.customVerticalSpace(14),
-            Row(
+            ],
+          ),
+          UIHelper.customVerticalSpace(14),
+          Flexible(
+            child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
                 PrimaryButton(
@@ -123,9 +117,10 @@ class OrderCard extends StatelessWidget {
                   style: AppTextStyle.successText,
                 )
               ],
-            )
-          ],
-        ),
+            ),
+          ),
+          UIHelper.customVerticalSpace(20),
+        ],
       ),
     );
   }
